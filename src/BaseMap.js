@@ -3,6 +3,7 @@ import Map from "ol/Map";
 import View from "ol/View";
 import TileLayer from "ol/layer/Tile";
 import XYZ from "ol/source/XYZ";
+import { ZoomToExtent, defaults as defaultControls } from "ol/control";
 
 const BaseMap = () => {
   const [map, setMap] = useState("map");
@@ -13,6 +14,7 @@ const BaseMap = () => {
   // see https://github.com/openlayers/openlayers#getting-started
   useEffect(() => {
     const mapNew = new Map({
+      
       target: mapElement.current,
       layers: [
         new TileLayer({
@@ -32,7 +34,11 @@ const BaseMap = () => {
         center: [0, 0],
         zoom: 2,
       }),
-      controls: [],
+      controls: defaultControls().extend([
+        new ZoomToExtent({
+          extent: [-8077253.6530,5022218.5064,-7738790.4917,5291276.8460,],
+        })
+      ]),
     });
     setMap(mapNew);
   }, []);
