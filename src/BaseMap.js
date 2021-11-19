@@ -14,7 +14,6 @@ const BaseMap = () => {
   // see https://github.com/openlayers/openlayers#getting-started
   useEffect(() => {
     const mapNew = new Map({
-      
       target: mapElement.current,
       layers: [
         new TileLayer({
@@ -25,8 +24,8 @@ const BaseMap = () => {
         // Google Maps Terrain
         new TileLayer({
           source: new XYZ({
-            url: 'https://stamen-tiles.a.ssl.fastly.net/toner/{z}/{x}/{y}.png',
-          })
+            url: "https://stamen-tiles.a.ssl.fastly.net/toner/{z}/{x}/{y}.png",
+          }),
         }),
       ],
       view: new View({
@@ -36,8 +35,8 @@ const BaseMap = () => {
       }),
       controls: defaultControls().extend([
         new ZoomToExtent({
-          extent: [-8077253.6530,5022218.5064,-7738790.4917,5291276.8460,],
-        })
+          extent: [-8077253.653, 5022218.5064, -7738790.4917, 5291276.846],
+        }),
       ]),
     });
     setMap(mapNew);

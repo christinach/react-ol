@@ -1,8 +1,17 @@
-// import { render, screen } from "@testing-library/react";
-// import App from "./App";
+// import React from 'react';
+// import { render, screen } from '@testing-library/react';
+import App from "./App";
+import React from "react";
+import { shallow } from "enzyme";
 
-// test("renders learn react link", () => {
+// it('renders welcome message', () => {
 //   render(<App />);
-//   // const linkElement = screen.getByText(/learn react/i);
-//   // expect(linkElement).toBeInTheDocument();
+//   expect(screen.getByText('Learn React')).toBeInTheDocument();
 // });
+describe("App", () => {
+  it('should render correctly in "debug" mode', () => {
+    const component = shallow(<App debug />);
+
+    expect(component).toMatchSnapshot();
+  });
+});
