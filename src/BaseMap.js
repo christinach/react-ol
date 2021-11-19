@@ -20,6 +20,12 @@ const BaseMap = () => {
             url: "https://basemap.nationalmap.gov/arcgis/rest/services/USGSTopo/MapServer/tile/{z}/{y}/{x}",
           }),
         }),
+        // Google Maps Terrain
+        new TileLayer({
+          source: new XYZ({
+            url: 'https://stamen-tiles.a.ssl.fastly.net/toner/{z}/{x}/{y}.png',
+          })
+        }),
       ],
       view: new View({
         projection: "EPSG:3857",
