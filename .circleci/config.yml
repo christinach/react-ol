@@ -1,0 +1,28 @@
+version: 2.1
+
+jobs:
+  build:
+    # Specify the execution environment. You can specify an image from Dockerhub or use one of our Convenience Images from CircleCI's Developer Hub.
+    # See: https://circleci.com/docs/2.0/configuration-reference/#docker-machine-macos-windows-executor
+    docker:
+      - image: cimg/base:stable
+    # Add steps to the job
+    # See: https://circleci.com/docs/2.0/configuration-reference/#steps
+    steps:
+      - checkout
+      
+      - restore_cache:
+        keys:
+          - v1-dependencies-{{ checksum "package.json" }}
+          - v1-dependencies-
+      
+      - run: npm install
+   
+      - save_cache:
+        paths:
+          - node_modules
+          - ~/.npm 
+          - ~/.cache        key: v1-dependencies-{{ checksum "package.json" }}
+    
+      - run: npm lint
+      - run: npm test
